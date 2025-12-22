@@ -6,4 +6,5 @@ Vergil: Dactylic Hexameter
 Horace: Lyric
 Catullus: Various - Elegaic, hendecasyllabic
 
+All text is collected from thelatinlibrary.com
 

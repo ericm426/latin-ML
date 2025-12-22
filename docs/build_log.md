@@ -9,5 +9,10 @@ kept macrons in text:
         different poets use different metrical patters, which often depend on macrons for us as English speakers to discern more easily
 
 
+11/14/2025
+collect more data (lines of poetry) for the authors, aim for a couple thousand lines
+basic training.py implemented
+decided to go with no macrons since not all texts include them
+
 
 
