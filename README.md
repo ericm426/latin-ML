@@ -1,4 +1,9 @@
 # latin-ML
-The objective of this project is to analyze latin text from authors like Vergil, Horace, Catullus, Cicero using Machine Learning. This allows for classification of text. 
+Train a machine learning model to recognize and classify different styles of Latin poetry by author (Vergil, Horace, Catullus, etc.)
+
+Author Styles:
+Vergil: Dactylic Hexameter
+Horace: Lyric
+Catullus: Various - Elegaic, hendecasyllabic
 
 
