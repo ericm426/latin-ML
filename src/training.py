@@ -6,7 +6,6 @@ import time
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 import numpy as np
 
@@ -103,7 +102,6 @@ for author in set(labels):
 
 # chunk lengths
 print("-"*50)
-import numpy as np
 line_lengths = [len(text.split()) for text in texts]
 print(f"\nAverage words per chunk: {np.mean(line_lengths):.1f}")
 print(f"Min: {np.min(line_lengths)}, Max: {np.max(line_lengths)}")
