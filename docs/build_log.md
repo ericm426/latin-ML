@@ -1,5 +1,4 @@
-11/13/2025
-
+12/3-7
 Initialized repo and set up infrastructure (folders) 
 Added sample lines from three poets: Vergil, Horace, Catullus
 built preprocess for cleaning data. 
@@ -9,7 +8,6 @@ kept macrons in text:
         different poets use different metrical patters, which often depend on macrons for us as English speakers to discern more easily
 
 
-11/14/2025
 collect more data (lines of poetry) for the authors, aim for a couple thousand lines
 basic training.py implemented
 decided to go with no macrons since not all texts include them
@@ -40,7 +38,7 @@ realized i was using max_df=2 as one of the vectorizer parameters when it is act
 - debugging possibilities: each line is only around 5 words, this is kinda short, so i may combine some lines. Other method would probably be try8ing to use logistic regression model
 - Logistic regression decreased overfitting, I also decreased the C value to 0.5, (increase regularization), decreasing overfitting to 27%. I will now implement chunking
 
-
+12/15-19
 ### Line Chunking
 
 **Problem:** Even with character n-grams, single lines lacked context due to small amount of words (5.4) 
@@ -68,3 +66,25 @@ realized i was using max_df=2 as one of the vectorizer parameters when it is act
 **Note** 
 - 3 seems to be the sweet spot for chunk_size as of now, probably due to me limiting to 482, lines, creating 162 chunks, I'm guessing as I increase the amouunt of text, I might get better results (maybe????)
 
+12/27/2025
+
+### pickle model saving
+
+wrote a script in training.py to save my model in folder models
+created demo.py to create a interactive user demo, taking in user inputs for text
+
+### model Limitations: Input Length Matters
+
+Testing revealed that single lines of poetry (~7-10 words) produce unreliable 
+predictions with confidence scores around 35% (barely better than random guessing 
+for 3 classes).
+
+**Example** Individual lines from Vergil's Aeneid Book 5 were frequently 
+misclassified as Horace or Catullus.
+
+**Root cause:** Model was trained on 3-line chunks (~16 words). Single lines 
+lack sufficient context and character n-gram frequency for reliable classification.
+
+**Solution:** Combine 3 consecutive lines for testing, or warn users when input 
+is <15 words. This demonstrates the importance of matching test data format to 
+training data format.

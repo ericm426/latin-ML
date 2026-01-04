@@ -1,4 +1,5 @@
 import sys
+import pickle
 import os
 import time 
 
@@ -8,6 +9,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 import numpy as np
+
+from collections import Counter
 
 from preprocess import create_labeled_dataset
 
@@ -85,7 +88,6 @@ else:
 
 
 
-from collections import Counter
 print("-" * 100)
 
 print(f"Balanced to min lines")
@@ -105,3 +107,27 @@ import numpy as np
 line_lengths = [len(text.split()) for text in texts]
 print(f"\nAverage words per chunk: {np.mean(line_lengths):.1f}")
 print(f"Min: {np.min(line_lengths)}, Max: {np.max(line_lengths)}")
+
+#save model
+os.makedirs('../models', exist_ok=True)
+
+pickle.dump(clf, open('../models/classifier.pkl','wb')) #clkassifer
+pickle.dump(vectorizer, open('../models/vectorizer.pkl', 'wb')) #vectorizer
+
+metadata = {
+    'model_type': 'LogisticRegression',
+    'train_accuracy': train_acc,
+    'test_accuracy': test_acc,
+    'chunk_size': 3,
+    'authors': list(clf.classes_),
+    'n_features': vectorizer.max_features, 
+    'analyzer': vectorizer.analyzer,
+    'ngram_range': vectorizer.ngram_range
+}
+
+pickle.dump(metadata, open('../models/metadata.pkl', 'wb'))
+
+print("-"*50)
+print("model save success")
+
+
